@@ -1,9 +1,9 @@
-import logo from './logo.svg';
+
 import './App.css';
 import { useEffect, useState } from 'react';
 
 function App() {
-  const [users, setUsers] = useState();
+  const [users, setUsers] = useState([]);
   useEffect(() => {
     fetch('http://localhost:5000/users')
       .then(res => res.json())
@@ -12,7 +12,12 @@ function App() {
   return (
 
     <div className="App">
-      <h2>found users: {users}</h2>
+      <h2>found users: {users.length}</h2>
+      <ul>
+        {
+          users.map(user => <li key={user.id}>{user.name}</li>)
+        }
+      </ul>
     </div>
   );
 }
